@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use App\Models\Post;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,6 @@ Route::get('/about', function () {
 });
 
 Route::get('/posts', function () {
-   
     $posts = Post::all();
     return Inertia::render('Site/Posts',compact('posts'));
 });
@@ -51,12 +51,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-    Route::get('/admin/posts', [PostController::class, 'index'])->name('posts');
-    Route::get('/admin/post/create', [PostController::class, 'create'])->name('post.create');
-    Route::post('/admin/post/store', [PostController::class, 'store'])->name('post.store');
-    Route::get('/admin/post/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
-    Route::post('/admin/post/update', [PostController::class, 'update'])->name('post.update');
-    Route::get('/admin/post/delete/{id}', [PostController::class, 'delete'])->name('post.delete');
+    Route::get('/posts', [PostController::class, 'index'])->name('posts');
+    Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
+    Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
+    Route::get('/post/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
+    Route::post('/post/update', [PostController::class, 'update'])->name('post.update');
+    Route::get('/post/delete/{id}', [PostController::class, 'delete'])->name('post.delete');
+
+    Route::get('/files', [FileController::class, 'index'])->name('files');
+    Route::get('/file/create', [FileController::class, 'create'])->name('file.create');
+    Route::post('/file/store', [FileController::class, 'store'])->name('file.store');
+    Route::get('/file/edit/{id}', [FileController::class, 'edit'])->name('file.edit');
+    Route::post('/file/update', [FileController::class, 'update'])->name('file.update');
+    Route::get('/file/delete/{id}', [FileController::class, 'delete'])->name('file.delete');
+
+
 });
 
 require __DIR__.'/auth.php';

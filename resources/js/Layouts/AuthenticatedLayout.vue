@@ -8,6 +8,9 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
+// Assuming you have a base URL for your images
+
+
 </script>
 
 <template>
@@ -35,6 +38,10 @@ const showingNavigationDropdown = ref(false);
 
                                 <NavLink :href="route('posts')" :active="route().current('posts')">
                                     Posts
+                                </NavLink>
+
+                                <NavLink :href="route('files')" :active="route().current('files')">
+                                    Files
                                 </NavLink>
                             </div>
                         </div>
